@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  /* Холст */
+  --color-canvas: #f7f8fa;
+  --color-surface: #ffffff;
+
+  /* Текст */
+  --color-ink: #1a1a1f;
+  --color-ink-soft: #4b4f57;
+  --color-ink-muted: #8a8f98;
+
+  /* Доминирующий акцент — электрик/индиго (CTA «кричат») */
+  --color-accent: #3b5bff;
+  --color-accent-600: #2c47e0;
+  --color-accent-700: #2138bd;
+  --color-accent-soft: #eaeeff;
+
+  /* Вторичный «горящий» акцент для таймера/скидки */
+  --color-flame: #ff5a1f;
+
+  --color-success: #18a957;
+
+  /* Шрифты (подключаются через next/font в layout) */
+  --font-display: var(--font-unbounded), system-ui, sans-serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+
+  --radius-xl2: 1.5rem;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* запас под фиксированный хедер при якорном скролле */
+  scroll-padding-top: 80px;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  /* Пульсация-свечение для главных CTA */
+  .cta-glow {
+    box-shadow:
+      0 10px 30px -8px color-mix(in srgb, var(--color-accent) 60%, transparent),
+      0 0 0 0 color-mix(in srgb, var(--color-accent) 40%, transparent);
+    animation: ctaPulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes ctaPulse {
+    0%,
+    100% {
+      box-shadow:
+        0 10px 30px -8px color-mix(in srgb, var(--color-accent) 60%, transparent),
+        0 0 0 0 color-mix(in srgb, var(--color-accent) 45%, transparent);
+    }
+    50% {
+      box-shadow:
+        0 14px 36px -8px color-mix(in srgb, var(--color-accent) 70%, transparent),
+        0 0 0 14px color-mix(in srgb, var(--color-accent) 0%, transparent);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-glow {
+      animation: none;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
