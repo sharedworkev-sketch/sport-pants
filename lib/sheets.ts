@@ -49,9 +49,62 @@ function getSheetsClient() {
   return google.sheets({ version: "v4", auth });
 }
 
+const HEADER = [
+  "Дата/время",
+  "Имя",
+  "Телефон",
+  "Цвет",
+  "Размер",
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_content",
+  "ttclid",
+  "referrer",
+];
+
+type Sheets = ReturnType<typeof getSheetsClient>;
+
+/** Извлекает имя листа из диапазона: `Заявки!A:K` → `Заявки`, `'Мой лист'!A:K` → `Мой лист`. */
+function sheetTitleFromRange(range: string): string {
+  const bang = range.lastIndexOf("!");
+  const title = bang === -1 ? range : range.slice(0, bang);
+  if (title.startsWith("'") && title.endsWith("'")) {
+    return title.slice(1, -1).replace(/''/g, "'");
+  }
+  return title;
+}
+
+/**
+ * Гарантирует, что лист с нужным названием существует. Если нет — создаёт его
+ * и записывает строку заголовков. Это устраняет ошибку «Unable to parse range»
+ * и гонку, когда заявки уходили не в тот лист.
+ */
+async function ensureSheet(sheets: Sheets, spreadsheetId: string, title: string): Promise<void> {
+  const meta = await sheets.spreadsheets.get({
+    spreadsheetId,
+    fields: "sheets.properties.title",
+  });
+  const exists = meta.data.sheets?.some((s) => s.properties?.title === title);
+  if (exists) return;
+
+  await sheets.spreadsheets.batchUpdate({
+    spreadsheetId,
+    requestBody: { requests: [{ addSheet: { properties: { title } } }] },
+  });
+  await sheets.spreadsheets.values.update({
+    spreadsheetId,
+    range: `${title}!A1`,
+    valueInputOption: "USER_ENTERED",
+    requestBody: { values: [HEADER] },
+  });
+}
+
 export async function appendLead(row: SheetRow): Promise<void> {
   const { sheetId, range } = getEnv();
   const sheets = getSheetsClient();
+
+  await ensureSheet(sheets, sheetId, sheetTitleFromRange(range));
 
   const values = [
     [
