@@ -11,10 +11,10 @@ export type ProductColor = {
 };
 
 export const colors: ProductColor[] = [
-  { id: "black", name: "Чёрный", hex: "#1A1A1F", image: "/products/black.jpg" },
-  { id: "gray", name: "Серый", hex: "#8A8F98", image: "/products/gray.jpg" },
-  { id: "navy", name: "Тёмно-синий", hex: "#1E2A4A", image: "/products/navy.jpg" },
-  { id: "khaki", name: "Хаки", hex: "#6B6A47", image: "/products/khaki.jpg" },
+  { id: "black", name: "Чёрный", hex: "#1A1A1F", image: "/products/black.png" },
+  { id: "gray", name: "Серый", hex: "#8A8F98", image: "/products/gray.png" },
+  { id: "white", name: "Белый", hex: "#FFFFFF", image: "/products/white.png" },
+  { id: "green", name: "Зелёный", hex: "#228B22", image: "/products/green.png" },
 ];
 
 export const colorIds = colors.map((c) => c.id);
