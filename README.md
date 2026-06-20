@@ -60,7 +60,7 @@ npm run dev
 ### Заполнение `.env.local`
 
 ```
-GOOGLE_SERVICE_ACCOUNT_EMAIL=имя@проект.iam.gserviceaccount.com
+GOOGLE_CLIENT_EMAIL=имя@проект.iam.gserviceaccount.com
 GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIE...\n-----END PRIVATE KEY-----\n"
 GOOGLE_SHEET_ID=1AbC...XYZ
 GOOGLE_SHEET_RANGE=Заявки!A:K

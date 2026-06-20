@@ -22,14 +22,14 @@ export type SheetRow = {
 };
 
 function getEnv() {
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+  const email = process.env.GOOGLE_CLIENT_EMAIL;
   const rawKey = process.env.GOOGLE_PRIVATE_KEY;
   const sheetId = process.env.GOOGLE_SHEET_ID;
   const range = process.env.GOOGLE_SHEET_RANGE || "Заявки!A:K";
 
   if (!email || !rawKey || !sheetId) {
     throw new Error(
-      "Google Sheets не настроен: проверь GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY, GOOGLE_SHEET_ID в .env",
+      "Google Sheets не настроен: проверь GOOGLE_CLIENT_EMAIL, GOOGLE_PRIVATE_KEY, GOOGLE_SHEET_ID в .env",
     );
   }
 
