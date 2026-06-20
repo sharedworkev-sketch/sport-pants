@@ -18,7 +18,7 @@ export function Footer() {
         </div>
       </div>
       <p className="mx-auto mt-6 max-w-5xl text-center text-xs text-ink-muted sm:text-left">
-        © {new Date().getFullYear()} {content.brand}. Контакты-плейсхолдеры — заменить реальными.
+        © {new Date().getFullYear()} {content.brand}. {content.geo}.
       </p>
     </footer>
   );
