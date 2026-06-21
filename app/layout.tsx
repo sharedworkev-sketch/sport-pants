@@ -18,9 +18,9 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const title = `${content.brand} — спортивные штаны со скидкой 50% | ${content.price} руб`;
+const title = `${content.brand} — повседневные брюки со скидкой 50% | ${content.price} руб`;
 const description =
-  "Спортивные штаны: плотная мягкая ткань, 4 цвета, все размеры. Бесплатная доставка по Беларуси, оплата при получении. Сегодня — 59.99 руб вместо 120.";
+  "Повседневные брюки: плотная мягкая ткань, 4 цвета, все размеры. Бесплатная доставка по Беларуси, оплата при получении. Сегодня — 49.99 руб вместо 120.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),

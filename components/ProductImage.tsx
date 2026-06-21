@@ -38,7 +38,7 @@ export function ProductImage({
           {color?.image ? (
             <Image
               src={color.image}
-              alt={`Спортивные штаны, цвет: ${color.name}`}
+              alt={`Повседневные брюки, цвет: ${color.name}`}
               fill
               preload
               sizes="(max-width: 768px) 100vw, 50vw"

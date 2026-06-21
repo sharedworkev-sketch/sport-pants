@@ -12,7 +12,7 @@ const icons: Record<string, string> = {
   fabric: "🧵",
   fit: "📐",
   shape: "💪",
-  gym: "🏋️",
+  everyday: "🚶",
   pocket: "📱",
 };
 
@@ -29,8 +29,8 @@ export function Product() {
               Почему их хочется носить каждый день
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-ink-soft">
-              Это не просто штаны. Это комфорт, который ты чувствуешь с первой минуты — и в зале,
-              и на улице.
+              Это не просто брюки. Это комфорт, который ты чувствуешь с первой минуты — и на работе,
+              и на прогулке.
             </p>
           </div>
         </Reveal>
